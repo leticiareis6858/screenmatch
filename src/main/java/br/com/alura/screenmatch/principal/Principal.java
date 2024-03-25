@@ -56,8 +56,13 @@ public class Principal {
         System.out.println("\nTop 5 episódios:");
         dadosEpisodios.stream()
             .filter(e->!e.avaliacao().equalsIgnoreCase("N/A"))
+                .peek(e-> System.out.println("Primeiro filtro(N/A) "+e))
                 .sorted(Comparator.comparing(DadosEpisodio::avaliacao).reversed())
+                .peek(e-> System.out.println("Ordenação "+e))
                 .limit(5)
+                .peek(e-> System.out.println("Limite "+e))
+                .map(e->e.titulo().toUpperCase())
+                .peek(e-> System.out.println("Mapeamento "+e))
                 .forEach(System.out::println);
 
         List<Episodio> episodios=temporadas.stream()
