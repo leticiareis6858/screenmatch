@@ -27,7 +27,7 @@ public class Serie {
         this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
         this.atores = dadosSerie.atores();
         this.poster = dadosSerie.poster();
-        this.sinopse = ConsumoMyMemoryAPI.traduzirEngParaPtBr(dadosSerie.sinopse()).trim();
+        this.sinopse = ConsumoMyMemoryAPI.obterTraducao(dadosSerie.sinopse()).trim();
     }
 
     public long getId() {

@@ -34,7 +34,7 @@ public class ConsumoMyMemoryAPI {
         }
     }
 
-    public static String traduzirEngParaPtBr(String text) {
+    public static String obterTraducao(String text) {
         ObjectMapper mapper = new ObjectMapper();
 
         String json = get(text, Linguagem.INGLES, Linguagem.PORTUGUES);
