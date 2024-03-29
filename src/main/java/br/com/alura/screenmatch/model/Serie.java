@@ -30,6 +30,10 @@ public class Serie {
         this.sinopse = ConsumoMyMemoryAPI.obterTraducao(dadosSerie.sinopse()).trim();
     }
 
+    public Serie() {
+
+    }
+
     public long getId() {
         return id;
     }
