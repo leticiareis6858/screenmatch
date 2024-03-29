@@ -1,8 +1,7 @@
 package br.com.alura.screenmatch.model;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-
 import java.util.OptionalDouble;
+import br.com.alura.screenmatch.service.ConsumoMyMemoryAPI;
 
 public class Serie {
     private String titulo;
@@ -20,7 +19,7 @@ public class Serie {
         this.genero = Categoria.fromString(dadosSerie.genero().split(",")[0].trim());
         this.atores = dadosSerie.atores();
         this.poster = dadosSerie.poster();
-        this.sinopse = dadosSerie.sinopse();
+        this.sinopse = ConsumoMyMemoryAPI.traduzirEngParaPtBr(dadosSerie.sinopse()).trim();
     }
 
     public String getTitulo() {
