@@ -4,7 +4,7 @@ Essa é uma aplicação desenvolvida para facilitar a consulta de dados de séri
 
 Com esta aplicação é possível consultar todos os episódios de uma série a partir de seu nome, consultar o top 5 episódios com melhor avaliação, pesquisar um episódio da série e pesquisar episódios a partir de um ano a ser especificado pelo usuário.
 
-Aplicação feita curso ***"Java: trabalhando com lambdas, streams e Spring Framework"*** da _Alura_.
+Aplicação feita nos cursos ***"Java: trabalhando com lambdas, streams e Spring Framework"*** e ***"Java: Persistência de dados e consultas com Spring Data JPA"*** da _Alura_.
 
 Essa aplicação faz uso da **OMDb API** disponível em: www.omdbapi.com
 
