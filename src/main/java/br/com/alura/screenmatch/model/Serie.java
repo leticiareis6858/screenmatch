@@ -2,11 +2,19 @@ package br.com.alura.screenmatch.model;
 
 import java.util.OptionalDouble;
 import br.com.alura.screenmatch.service.ConsumoMyMemoryAPI;
+import jakarta.persistence.*;
 
+@Entity
+@Table(name="series")
 public class Serie {
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private long id;
+    @Column(unique = true)
     private String titulo;
     private Integer totalTemporadas;
     private Double avaliacao;
+    @Enumerated(EnumType.STRING)
     private Categoria genero;
     private String atores;
     private String poster;
@@ -20,6 +28,14 @@ public class Serie {
         this.atores = dadosSerie.atores();
         this.poster = dadosSerie.poster();
         this.sinopse = ConsumoMyMemoryAPI.traduzirEngParaPtBr(dadosSerie.sinopse()).trim();
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getTitulo() {
