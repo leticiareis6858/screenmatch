@@ -21,7 +21,7 @@ public class Principal {
     private SerieRepository repositorio;
 
     public Principal(SerieRepository repositorio) {
-        this.repositorio=repositorio;
+        this.repositorio = repositorio;
     }
 
     public void exibeMenu() {
@@ -59,7 +59,7 @@ public class Principal {
 
     private void buscarSerie() {
         DadosSerie dados = getDadosSerie();
-        Serie serie=new Serie(dados);
+        Serie serie = new Serie(dados);
         repositorio.save(serie);
         System.out.println(dados);
     }
@@ -86,10 +86,7 @@ public class Principal {
     }
 
     private void listarSeriesBuscadas() {
-        List<Serie> series=new ArrayList<>();
-        series=dadosSeries.stream()
-                        .map(d->new Serie(d))
-                                .collect(Collectors.toList());
+        List<Serie> series = repositorio.findAll();
         series.stream()
                 .sorted(Comparator.comparing(Serie::getGenero))
                 .forEach(System.out::println);
