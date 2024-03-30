@@ -55,6 +55,9 @@ public class Principal {
                 case 4:
                     buscarSerieSalvas();
                     break;
+                case 5:
+                    buscarSeriesPorAtor();
+                    break;
                 case 0:
                     System.out.println("Encerrando a aplicação...");
                     break;
@@ -128,4 +131,18 @@ public class Principal {
             System.out.println("Nenhuma série encontrada com o título informado.");
         }
     }
+
+    private void buscarSeriesPorAtor() {
+        System.out.println("Qual o nome para a busca? ");
+        var nomeAtor=scanner.nextLine();
+        List<Serie> seriesEncontradas=repositorio.findAllByAtoresContainingIgnoreCase(nomeAtor);
+
+        if (!seriesEncontradas.isEmpty()) {
+            System.out.println("Séries em que "+nomeAtor+" trabalhou: ");
+            seriesEncontradas.forEach(s-> System.out.println(s.getTitulo()+" avaliação: "+s.getAvaliacao()));
+        } else {
+            System.out.println("Nenhuma série encontrada com o ator informado.");
+        }
+    }
+
 }
