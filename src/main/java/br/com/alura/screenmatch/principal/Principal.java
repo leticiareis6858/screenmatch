@@ -1,9 +1,6 @@
 package br.com.alura.screenmatch.principal;
 
-import br.com.alura.screenmatch.model.DadosSerie;
-import br.com.alura.screenmatch.model.DadosTemporada;
-import br.com.alura.screenmatch.model.Episodio;
-import br.com.alura.screenmatch.model.Serie;
+import br.com.alura.screenmatch.model.*;
 import br.com.alura.screenmatch.repository.SerieRepository;
 import br.com.alura.screenmatch.service.ConsumoAPI;
 import br.com.alura.screenmatch.service.ConverteDados;
@@ -37,6 +34,7 @@ public class Principal {
                     5. Buscar séries por ator
                     6. Buscar séries por ator e avaliação mínima
                     7. Top 5 séries salvas
+                    8. Buscar séries por categoria/gênero
                     0. Sair                                 
                     """;
 
@@ -65,6 +63,9 @@ public class Principal {
                     break;
                 case 7:
                     buscarTop5Series();
+                    break;
+                case 8:
+                    buscarSeriesPorCategoria();
                     break;
                 case 0:
                     System.out.println("Encerrando a aplicação...");
@@ -175,4 +176,18 @@ public class Principal {
         serieTop.forEach(s -> System.out.println(s.getTitulo() + " avaliação: " + s.getAvaliacao()));
     }
 
+    private void buscarSeriesPorCategoria() {
+        System.out.println("Deseja buscar séries de que categoria/gênero? ");
+        var categoriaInformada = scanner.nextLine();
+        Categoria categoria = Categoria.fromPortugues(categoriaInformada);
+
+        List<Serie> seriesPorCategoria = repositorio.findByGenero(categoria);
+
+        if (!seriesPorCategoria.isEmpty()) {
+            System.out.println("Séries da categoria " + categoriaInformada+":");
+            seriesPorCategoria.forEach(s-> System.out.println("| "+"Gênero: "+s.getGenero()+" | "+"Titulo: "+s.getTitulo()+" | \n"));
+        } else {
+            System.out.println("Nenhuma série encontrada com a categoria/gênero " + categoriaInformada + "!");
+        }
+    }
 }
