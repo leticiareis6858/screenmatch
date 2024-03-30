@@ -12,4 +12,6 @@ public interface SerieRepository extends JpaRepository<Serie, Long> {
     List<Serie> findAllByTituloContainingIgnoreCase(String nomeSerie);
 
     List<Serie> findAllByAtoresContainingIgnoreCase(String nomeAtor);
+
+    List<Serie> findAllByAtoresContainingIgnoreCaseAndAvaliacaoGreaterThanEqual(String nomeAtor, Double avaliacao);
 }

@@ -35,6 +35,7 @@ public class Principal {
                     3. Listar séries buscadas    
                     4. Buscar séries salvas usando trecho do título ou título completo
                     5. Buscar séries por ator
+                    6. Buscar séries por ator e avaliação mínima
                     0. Sair                                 
                     """;
 
@@ -57,6 +58,9 @@ public class Principal {
                     break;
                 case 5:
                     buscarSeriesPorAtor();
+                    break;
+                case 6:
+                    buscarSeriesPorAtorEAvaliacao();
                     break;
                 case 0:
                     System.out.println("Encerrando a aplicação...");
@@ -136,6 +140,23 @@ public class Principal {
         System.out.println("Qual o nome para a busca? ");
         var nomeAtor=scanner.nextLine();
         List<Serie> seriesEncontradas=repositorio.findAllByAtoresContainingIgnoreCase(nomeAtor);
+
+        if (!seriesEncontradas.isEmpty()) {
+            System.out.println("Séries em que "+nomeAtor+" trabalhou: ");
+            seriesEncontradas.forEach(s-> System.out.println(s.getTitulo()+" avaliação: "+s.getAvaliacao()));
+        } else {
+            System.out.println("Nenhuma série encontrada com o ator informado.");
+        }
+    }
+
+    private void buscarSeriesPorAtorEAvaliacao() {
+        System.out.println("Qual o nome para a busca? ");
+        var nomeAtor=scanner.nextLine();
+
+        System.out.println("Exibir séries a partir de que avaliação mínima? ");
+        var avaliacao=scanner.nextDouble();
+
+        List<Serie> seriesEncontradas=repositorio.findAllByAtoresContainingIgnoreCaseAndAvaliacaoGreaterThanEqual(nomeAtor,avaliacao);
 
         if (!seriesEncontradas.isEmpty()) {
             System.out.println("Séries em que "+nomeAtor+" trabalhou: ");
