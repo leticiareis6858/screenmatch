@@ -39,6 +39,7 @@ public class Principal {
                     9. Filtrar séries por número máximo de temporadas e mínimo de avaliação
                     10. Buscar episódios por trecho
                     11. Buscar série por título
+                    12. Buscar o 5 melhores episódios de uma série
                     0. Sair                                 
                     """;
 
@@ -79,6 +80,9 @@ public class Principal {
                     break;
                 case 11:
                     buscarSeriePorTitulo();
+                    break;
+                case 12:
+                    buscarTop5EpisodiosPorSerie();
                     break;
                 case 0:
                     System.out.println("Encerrando a aplicação...");
@@ -263,4 +267,15 @@ public class Principal {
 
     }
 
+    private void buscarTop5EpisodiosPorSerie() {
+        buscarSeriePorTitulo();
+        if (serieBusca.isPresent()) {
+            Serie serie = serieBusca.get();
+            List<Episodio> topEpisodios = repositorio.topEpisodiosPorSerie(serie);
+            topEpisodios.forEach(e ->
+                    System.out.printf("Série: %s Temporada %s - Episódio %s - %s Avaliação %s\n",
+                            e.getSerie().getTitulo(), e.getTemporada(),
+                            e.getNumeroEpisodio(), e.getTitulo(), e.getAvaliacao()));
+        }
+    }
 }
