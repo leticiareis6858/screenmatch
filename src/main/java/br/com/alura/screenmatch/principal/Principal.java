@@ -33,7 +33,8 @@ public class Principal {
                     1. Buscar séries
                     2. Buscar episódios     
                     3. Listar séries buscadas    
-                    4. Buscar série salva usando título/trecho do título
+                    4. Buscar séries salvas usando trecho do título ou título completo
+                    5. Buscar séries por ator
                     0. Sair                                 
                     """;
 
@@ -118,12 +119,13 @@ public class Principal {
     private void buscarSerieSalvas() {
         System.out.println("Digite o nome da série a ser buscada: ");
         var nomeSerie = scanner.nextLine();
-        Optional<Serie> serieBuscada = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
+        List<Serie> seriesEncontradas = repositorio.findAllByTituloContainingIgnoreCase(nomeSerie);
 
-        if (serieBuscada.isPresent()) {
-            System.out.println("Dados da série:\n" + serieBuscada.get());
+        if (!seriesEncontradas.isEmpty()) {
+            System.out.println("Séries encontradas:");
+            seriesEncontradas.forEach(System.out::println);
         } else {
-            System.out.println("Série não encontrada!");
+            System.out.println("Nenhuma série encontrada com o título informado.");
         }
     }
 }
