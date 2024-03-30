@@ -18,6 +18,7 @@ public class Principal {
     private List<DadosSerie> dadosSeries = new ArrayList<>();
     private SerieRepository repositorio;
     private List<Serie> series = new ArrayList<>();
+    private Optional<Serie> serieBusca;
 
     public Principal(SerieRepository repositorio) {
         this.repositorio = repositorio;
@@ -55,7 +56,7 @@ public class Principal {
                     listarSeriesBuscadas();
                     break;
                 case 4:
-                    buscarSerieSalvas();
+                    buscarSeriePorTrecho();
                     break;
                 case 5:
                     buscarSeriesPorAtor();
@@ -141,7 +142,7 @@ public class Principal {
         }
     }
 
-    private void buscarSerieSalvas() {
+    private void buscarSeriePorTrecho() {
         System.out.println("Digite o nome da série a ser buscada: ");
         var nomeSerie = scanner.nextLine();
         List<Serie> seriesEncontradas = repositorio.findAllByTituloContainingIgnoreCase(nomeSerie);
