@@ -35,6 +35,7 @@ public class Principal {
                     6. Buscar séries por ator e avaliação mínima
                     7. Top 5 séries salvas
                     8. Buscar séries por categoria/gênero
+                    9. Filtrar séries por número máximo de temporadas e mínimo de avaliação
                     0. Sair                                 
                     """;
 
@@ -66,6 +67,9 @@ public class Principal {
                     break;
                 case 8:
                     buscarSeriesPorCategoria();
+                    break;
+                case 9:
+                    filtrarSeriesPorTemporadaEAvaliacao();
                     break;
                 case 0:
                     System.out.println("Encerrando a aplicação...");
@@ -184,10 +188,23 @@ public class Principal {
         List<Serie> seriesPorCategoria = repositorio.findByGenero(categoria);
 
         if (!seriesPorCategoria.isEmpty()) {
-            System.out.println("Séries da categoria " + categoriaInformada+":");
-            seriesPorCategoria.forEach(s-> System.out.println("| "+"Gênero: "+s.getGenero()+" | "+"Titulo: "+s.getTitulo()+" | \n"));
+            System.out.println("Séries da categoria " + categoriaInformada + ":");
+            seriesPorCategoria.forEach(s -> System.out.println("| " + "Gênero: " + s.getGenero() + " | " + "Titulo: " + s.getTitulo() + " | \n"));
         } else {
             System.out.println("Nenhuma série encontrada com a categoria/gênero " + categoriaInformada + "!");
         }
+    }
+
+    private void filtrarSeriesPorTemporadaEAvaliacao() {
+        System.out.println("Filtrar séries até quantas temporadas? ");
+        var totalTemporadas = scanner.nextInt();
+
+        System.out.println("Com avaliação a partir de que valor? ");
+        var avaliacao = scanner.nextDouble();
+
+        List<Serie> filtroSeries = repositorio.findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(totalTemporadas, avaliacao);
+        System.out.println("Séries com até "+totalTemporadas+" temporadas e avaliação mínima de "+ avaliacao);
+        filtroSeries.forEach(s ->
+                System.out.println(s.getTitulo() + "  - avaliação: " + s.getAvaliacao()));
     }
 }
