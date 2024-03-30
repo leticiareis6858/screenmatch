@@ -11,6 +11,9 @@ import java.net.URLDecoder;
 import java.util.NoSuchElementException;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -80,13 +83,16 @@ public class ConsumoMyMemoryAPI {
         }
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public static class MyMemoryResponseValue {
         @JsonAlias(value = "responseData")
         public DadosResposta dadosResposta;
 
+        @JsonIgnoreProperties(ignoreUnknown = true)
         public static class DadosResposta {
             @JsonAlias(value = "translatedText")
             public String textoTraduzido;
+
         }
     }
 }
