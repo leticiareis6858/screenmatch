@@ -3,14 +3,15 @@ package br.com.alura.screenmatch.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.OptionalDouble;
+
 import br.com.alura.screenmatch.service.ConsumoMyMemoryAPI;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="series")
+@Table(name = "series")
 public class Serie {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(unique = true)
     private String titulo;
@@ -21,8 +22,8 @@ public class Serie {
     private String atores;
     private String poster;
     private String sinopse;
-    @Transient
-    private List<Episodio> episodios=new ArrayList<>();
+    @OneToMany(mappedBy = "serie", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Episodio> episodios = new ArrayList<>();
 
     public Serie(DadosSerie dadosSerie) {
         this.titulo = dadosSerie.titulo();
@@ -44,6 +45,15 @@ public class Serie {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public List<Episodio> getEpisodios() {
+        return episodios;
+    }
+
+    public void setEpisodios(List<Episodio> episodios) {
+        episodios.forEach(e -> e.setSerie(this));
+        this.episodios = episodios;
     }
 
     public String getTitulo() {
@@ -106,19 +116,13 @@ public class Serie {
     public String toString() {
         return
                 " genero=" + genero +
-                ", titulo='" + titulo + '\'' +
-                ", totalTemporadas=" + totalTemporadas +
-                ", avaliacao=" + avaliacao +
-                ", atores='" + atores + '\'' +
-                ", poster='" + poster + '\'' +
-                ", sinopse='" + sinopse + '\'';
+                        ", titulo='" + titulo + '\'' +
+                        ", totalTemporadas=" + totalTemporadas +
+                        ", avaliacao=" + avaliacao +
+                        ", atores='" + atores + '\'' +
+                        ", poster='" + poster + '\'' +
+                        ", sinopse='" + sinopse + '\'' +
+                        ", episodios='" + episodios + '\'';
     }
 
-    public List<Episodio> getEpisodios() {
-        return episodios;
-    }
-
-    public void setEpisodios(List<Episodio> episodios) {
-        this.episodios = episodios;
-    }
 }
