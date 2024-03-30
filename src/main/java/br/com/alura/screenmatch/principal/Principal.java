@@ -36,6 +36,7 @@ public class Principal {
                     7. Top 5 séries salvas
                     8. Buscar séries por categoria/gênero
                     9. Filtrar séries por número máximo de temporadas e mínimo de avaliação
+                    10. Buscar episódios por trecho
                     0. Sair                                 
                     """;
 
@@ -70,6 +71,9 @@ public class Principal {
                     break;
                 case 9:
                     filtrarSeriesPorTemporadaEAvaliacao();
+                    break;
+                case 10:
+                    buscarEpisodioPorTrecho();
                     break;
                 case 0:
                     System.out.println("Encerrando a aplicação...");
@@ -202,9 +206,25 @@ public class Principal {
         System.out.println("Com avaliação a partir de que valor? ");
         var avaliacao = scanner.nextDouble();
 
-        List<Serie> filtroSeries = repositorio.seriesPorTemporadaEAvaliacao(totalTemporadas,avaliacao);
-        System.out.println("Séries com até "+totalTemporadas+" temporadas e avaliação mínima de "+ avaliacao);
+        List<Serie> filtroSeries = repositorio.seriesPorTemporadaEAvaliacao(totalTemporadas, avaliacao);
+        System.out.println("Séries com até " + totalTemporadas + " temporadas e avaliação mínima de " + avaliacao);
         filtroSeries.forEach(s ->
                 System.out.println(s.getTitulo() + "  - avaliação: " + s.getAvaliacao()));
+    }
+
+    private void buscarEpisodioPorTrecho() {
+        System.out.println("Qual o nome do episódio para busca?");
+        var trechoEpisodio = scanner.nextLine();
+
+        List<Episodio> episodiosEncontrados = repositorio.episodiosPorTrecho(trechoEpisodio);
+
+        if (!episodiosEncontrados.isEmpty()) {
+            episodiosEncontrados.forEach(e ->
+                    System.out.printf("Série: %s Temporada %s - Episódio %s - %s\n",
+                            e.getSerie().getTitulo(), e.getTemporada(),
+                            e.getNumeroEpisodio(), e.getTitulo()));
+        } else {
+            System.out.println("Nenhum episódio encontrado!");
+        }
     }
 }
