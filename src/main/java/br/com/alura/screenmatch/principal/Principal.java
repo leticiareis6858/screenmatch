@@ -131,9 +131,14 @@ public class Principal {
 
     private void listarSeriesBuscadas() {
         series = repositorio.findAll();
-        series.stream()
-                .sorted(Comparator.comparing(Serie::getGenero))
-                .forEach(System.out::println);
+
+        if (!series.isEmpty()) {
+            series.stream()
+                    .sorted(Comparator.comparing(Serie::getGenero))
+                    .forEach(System.out::println);
+        } else {
+            System.out.println("Não há nenhuma série salva no banco de dados!");
+        }
     }
 
     private void buscarSerieSalvas() {
@@ -181,7 +186,12 @@ public class Principal {
 
     private void buscarTop5Series() {
         List<Serie> serieTop = repositorio.findTop5ByOrderByAvaliacaoDesc();
-        serieTop.forEach(s -> System.out.println(s.getTitulo() + " avaliação: " + s.getAvaliacao()));
+
+        if (!serieTop.isEmpty()) {
+            serieTop.forEach(s -> System.out.println(s.getTitulo() + " avaliação: " + s.getAvaliacao()));
+        } else {
+            System.out.println("Não há nenhuma série salva no banco de dados!");
+        }
     }
 
     private void buscarSeriesPorCategoria() {
@@ -207,9 +217,15 @@ public class Principal {
         var avaliacao = scanner.nextDouble();
 
         List<Serie> filtroSeries = repositorio.seriesPorTemporadaEAvaliacao(totalTemporadas, avaliacao);
-        System.out.println("Séries com até " + totalTemporadas + " temporadas e avaliação mínima de " + avaliacao);
-        filtroSeries.forEach(s ->
-                System.out.println(s.getTitulo() + "  - avaliação: " + s.getAvaliacao()));
+
+        if(!filtroSeries.isEmpty()){
+            System.out.println("Séries com até " + totalTemporadas + " temporadas e avaliação mínima de " + avaliacao);
+            filtroSeries.forEach(s ->
+                    System.out.println(s.getTitulo() + "  - avaliação: " + s.getAvaliacao()));
+        } else{
+            System.out.println("Não há nenhuma série salva no banco de dados que tenha até "+totalTemporadas+" e avaliação mínima de "+avaliacao+"!");
+        }
+
     }
 
     private void buscarEpisodioPorTrecho() {
