@@ -202,7 +202,7 @@ public class Principal {
         System.out.println("Com avaliação a partir de que valor? ");
         var avaliacao = scanner.nextDouble();
 
-        List<Serie> filtroSeries = repositorio.findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(totalTemporadas, avaliacao);
+        List<Serie> filtroSeries = repositorio.seriesPorTemporadaEAvaliacao(totalTemporadas,avaliacao);
         System.out.println("Séries com até "+totalTemporadas+" temporadas e avaliação mínima de "+ avaliacao);
         filtroSeries.forEach(s ->
                 System.out.println(s.getTitulo() + "  - avaliação: " + s.getAvaliacao()));
