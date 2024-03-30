@@ -38,6 +38,7 @@ public class Principal {
                     8. Buscar séries por categoria/gênero
                     9. Filtrar séries por número máximo de temporadas e mínimo de avaliação
                     10. Buscar episódios por trecho
+                    11. Buscar série por título
                     0. Sair                                 
                     """;
 
@@ -56,7 +57,7 @@ public class Principal {
                     listarSeriesBuscadas();
                     break;
                 case 4:
-                    buscarSeriePorTrecho();
+                    buscarSeriesPorTrecho();
                     break;
                 case 5:
                     buscarSeriesPorAtor();
@@ -75,6 +76,9 @@ public class Principal {
                     break;
                 case 10:
                     buscarEpisodioPorTrecho();
+                    break;
+                case 11:
+                    buscarSeriePorTitulo();
                     break;
                 case 0:
                     System.out.println("Encerrando a aplicação...");
@@ -142,8 +146,8 @@ public class Principal {
         }
     }
 
-    private void buscarSeriePorTrecho() {
-        System.out.println("Digite o nome da série a ser buscada: ");
+    private void buscarSeriesPorTrecho() {
+        System.out.println("Digite um trecho para pesquisar séries que o contem no título: ");
         var nomeSerie = scanner.nextLine();
         List<Serie> seriesEncontradas = repositorio.findAllByTituloContainingIgnoreCase(nomeSerie);
 
@@ -219,12 +223,12 @@ public class Principal {
 
         List<Serie> filtroSeries = repositorio.seriesPorTemporadaEAvaliacao(totalTemporadas, avaliacao);
 
-        if(!filtroSeries.isEmpty()){
+        if (!filtroSeries.isEmpty()) {
             System.out.println("Séries com até " + totalTemporadas + " temporadas e avaliação mínima de " + avaliacao);
             filtroSeries.forEach(s ->
                     System.out.println(s.getTitulo() + "  - avaliação: " + s.getAvaliacao()));
-        } else{
-            System.out.println("Não há nenhuma série salva no banco de dados que tenha até "+totalTemporadas+" e avaliação mínima de "+avaliacao+"!");
+        } else {
+            System.out.println("Não há nenhuma série salva no banco de dados que tenha até " + totalTemporadas + " e avaliação mínima de " + avaliacao + "!");
         }
 
     }
@@ -244,4 +248,19 @@ public class Principal {
             System.out.println("Nenhum episódio encontrado!");
         }
     }
+
+    private void buscarSeriePorTitulo() {
+        System.out.println("Busque uma série pelo nome: ");
+        var nomeSerie = scanner.nextLine();
+        serieBusca = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
+
+        if (serieBusca.isPresent()) {
+            System.out.println("Dados da série: " + serieBusca.get());
+
+        } else {
+            System.out.println("Série não encontrada!");
+        }
+
+    }
+
 }
