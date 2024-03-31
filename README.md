@@ -6,7 +6,7 @@ Aplicação feita nos cursos ***"Java: trabalhando com lambdas, streams e Spring
 
 ## 🚀 Tecnologias
 
-Esse projeto foi desenvolvido usando a [OMDb API](www.omdbapi.com) e as seguintes tecnologias: _Java 17_, _Spring Boot_, _Jackson Databidn_, _Maven_, _IntelliJ IDEA_.
+Esse projeto foi desenvolvido usando a [OMDb API](https://www.omdbapi.com) e as seguintes tecnologias: _Java 17_, _Spring Boot_, _Jackson Databidn_, _Maven_, _IntelliJ IDEA_.
 
 ## 💻 Pré-requisitos:
 
