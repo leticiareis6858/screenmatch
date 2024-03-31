@@ -33,4 +33,8 @@ public class SerieService {
                         s.getSinopse()))
                 .collect(Collectors.toList());
     }
+
+    public List<SerieDTO> obterLancamentos() {
+        return converteDados(repositorio.seriesLancamentos());
+    }
 }
