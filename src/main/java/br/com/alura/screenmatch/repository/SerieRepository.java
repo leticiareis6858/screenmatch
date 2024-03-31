@@ -3,7 +3,6 @@ package br.com.alura.screenmatch.repository;
 import br.com.alura.screenmatch.model.Categoria;
 import br.com.alura.screenmatch.model.Episodio;
 import br.com.alura.screenmatch.model.Serie;
-import org.springframework.boot.autoconfigure.amqp.RabbitProperties;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -11,17 +10,23 @@ import java.util.List;
 import java.util.Optional;
 
 public interface SerieRepository extends JpaRepository<Serie, Long> {
-    Optional<Serie> findByTituloContainingIgnoreCase(String nomeSerie);
+    @Query("SELECT s FROM Serie s WHERE s.titulo = :nomeSerie")
+     Optional<Serie> seriePorNome(String nomeSerie);
 
-    List<Serie> findAllByTituloContainingIgnoreCase(String nomeSerie);
+    @Query("SELECT s FROM Serie s WHERE s.titulo ILIKE %:trechoTitulo%")
+    List<Serie> seriesPorTrecho(String trechoTitulo);
 
-    List<Serie> findAllByAtoresContainingIgnoreCase(String nomeAtor);
+    @Query("SELECT s FROM Serie s WHERE s.atores ILIKE %:nomeAtor")
+    List<Serie> seriesPorAtor(String nomeAtor);
 
-    List<Serie> findAllByAtoresContainingIgnoreCaseAndAvaliacaoGreaterThanEqual(String nomeAtor, Double avaliacao);
+    @Query("SELECT s FROM Serie s WHERE s.atores ILIKE %:nomeAtor AND s.avaliacao >= :avaliacao")
+    List<Serie> seriesPorAtorEAvaliacao(String nomeAtor, Double avaliacao);
 
-    List<Serie> findTop5ByOrderByAvaliacaoDesc();
+    @Query("SELECT s FROM Serie s ORDER BY s.avaliacao DESC FETCH FIRST 5 ROWS ONLY")
+    List<Serie> seriesTop5();
 
-    List<Serie> findByGenero(Categoria categoria);
+    @Query("SELECT s FROM Serie s WHERE s.genero = :categoria")
+    List<Serie> seriesPorGenero(Categoria categoria);
 
     @Query("SELECT s FROM Serie s WHERE s.totalTemporadas <= :totalTemporadas AND s.avaliacao >= :avaliacao")
     List<Serie> seriesPorTemporadaEAvaliacao(int totalTemporadas, double avaliacao);

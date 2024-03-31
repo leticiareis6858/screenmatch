@@ -118,7 +118,7 @@ public class Principal {
         System.out.println("Escolha uma série pelo nome: ");
         var nomeSerie = scanner.nextLine();
 
-        Optional<Serie> serie = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
+        Optional<Serie> serie = repositorio.seriePorNome(nomeSerie);
 
         if (serie.isPresent()) {
             var serieEncontrada = serie.get();
@@ -156,8 +156,8 @@ public class Principal {
 
     private void buscarSeriesPorTrecho() {
         System.out.println("Digite um trecho para pesquisar séries que o contem no título: ");
-        var nomeSerie = scanner.nextLine();
-        List<Serie> seriesEncontradas = repositorio.findAllByTituloContainingIgnoreCase(nomeSerie);
+        var trechoTitulo = scanner.nextLine();
+        List<Serie> seriesEncontradas = repositorio.seriesPorTrecho(trechoTitulo);
 
         if (!seriesEncontradas.isEmpty()) {
             System.out.println("Séries encontradas:");
@@ -170,7 +170,7 @@ public class Principal {
     private void buscarSeriesPorAtor() {
         System.out.println("Qual o nome para a busca? ");
         var nomeAtor = scanner.nextLine();
-        List<Serie> seriesEncontradas = repositorio.findAllByAtoresContainingIgnoreCase(nomeAtor);
+        List<Serie> seriesEncontradas = repositorio.seriesPorAtor(nomeAtor);
 
         if (!seriesEncontradas.isEmpty()) {
             System.out.println("Séries em que " + nomeAtor + " trabalhou: ");
@@ -187,7 +187,7 @@ public class Principal {
         System.out.println("Exibir séries a partir de que avaliação mínima? ");
         var avaliacao = scanner.nextDouble();
 
-        List<Serie> seriesEncontradas = repositorio.findAllByAtoresContainingIgnoreCaseAndAvaliacaoGreaterThanEqual(nomeAtor, avaliacao);
+        List<Serie> seriesEncontradas = repositorio.seriesPorAtorEAvaliacao(nomeAtor, avaliacao);
 
         if (!seriesEncontradas.isEmpty()) {
             System.out.println("Séries em que " + nomeAtor + " trabalhou: ");
@@ -198,7 +198,7 @@ public class Principal {
     }
 
     private void buscarTop5Series() {
-        List<Serie> serieTop = repositorio.findTop5ByOrderByAvaliacaoDesc();
+        List<Serie> serieTop = repositorio.seriesTop5();
 
         if (!serieTop.isEmpty()) {
             serieTop.forEach(s -> System.out.println(s.getTitulo() + " avaliação: " + s.getAvaliacao()));
@@ -212,7 +212,7 @@ public class Principal {
         var categoriaInformada = scanner.nextLine();
         Categoria categoria = Categoria.fromPortugues(categoriaInformada);
 
-        List<Serie> seriesPorCategoria = repositorio.findByGenero(categoria);
+        List<Serie> seriesPorCategoria = repositorio.seriesPorGenero(categoria);
 
         if (!seriesPorCategoria.isEmpty()) {
             System.out.println("Séries da categoria " + categoriaInformada + ":");
@@ -260,7 +260,7 @@ public class Principal {
     private void buscarSeriePorTitulo() {
         System.out.println("Busque uma série pelo nome: ");
         var nomeSerie = scanner.nextLine();
-        serieBusca = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
+        serieBusca = repositorio.seriePorNome(nomeSerie);
 
         if (serieBusca.isPresent()) {
             System.out.println("Dados da série: " + serieBusca.get());
