@@ -40,6 +40,7 @@ public class Principal {
                     10. Buscar episódios por trecho
                     11. Buscar série por título
                     12. Buscar o 5 melhores episódios de uma série
+                    13. Buscar episódios lançados a partir de certo ano
                     0. Sair                                 
                     """;
 
@@ -83,6 +84,9 @@ public class Principal {
                     break;
                 case 12:
                     buscarTop5EpisodiosPorSerie();
+                    break;
+                case 13:
+                    buscarEpisodiosDepoisDeTalAno();
                     break;
                 case 0:
                     System.out.println("Encerrando a aplicação...");
@@ -276,6 +280,24 @@ public class Principal {
                     System.out.printf("Série: %s Temporada %s - Episódio %s - %s Avaliação %s\n",
                             e.getSerie().getTitulo(), e.getTemporada(),
                             e.getNumeroEpisodio(), e.getTitulo(), e.getAvaliacao()));
+        }
+    }
+
+    private void buscarEpisodiosDepoisDeTalAno() {
+        buscarSeriePorTitulo();
+        if (serieBusca.isPresent()) {
+            Serie serie = serieBusca.get();
+            System.out.println("Digite o ano limite de lançamento: ");
+            var anoLancamento = scanner.nextInt();
+            scanner.nextLine();
+
+            List<Episodio> episodiosAno = repositorio.episodiosPorSerieEAno(serie, anoLancamento);
+
+            if(!episodiosAno.isEmpty()){
+                episodiosAno.forEach(System.out::println);
+            } else{
+                System.out.println("Não existe nenhum episódio dessa série lançado a partir de "+anoLancamento+"!");
+            }
         }
     }
 }
