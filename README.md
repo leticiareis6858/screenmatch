@@ -2,7 +2,7 @@
 
 Essa é uma aplicação desenvolvida para facilitar a consulta de dados de séries.
 
-Aplicação feita nos cursos **_"Java: trabalhando com lambdas, streams e Spring Framework"_**, **_"Java: Persistência de dados e consultas com Spring Data JPA"_** e **_Java: criando sua primeira API e conectando ao front"_** da _Alura_.
+Aplicação feita nos cursos **_"Java: trabalhando com lambdas, streams e Spring Framework"_**, **_"Java: Persistência de dados e consultas com Spring Data JPA"_** e **"_Java: criando sua primeira API e conectando ao front"_** da _Alura_.
 
 Front-end criado por [Monica Hilman](https://cursos.alura.com.br/user/monicahillman) disponível em: https://github.com/jacqueline-oliveira/3356-java-web-front
 
