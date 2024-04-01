@@ -2,21 +2,23 @@
 
 Essa é uma aplicação desenvolvida para facilitar a consulta de dados de séries.
 
-Aplicação feita nos cursos ***"Java: trabalhando com lambdas, streams e Spring Framework"*** e ***"Java: Persistência de dados e consultas com Spring Data JPA"*** da _Alura_.
+Aplicação feita nos cursos **_"Java: trabalhando com lambdas, streams e Spring Framework"_**, **_"Java: Persistência de dados e consultas com Spring Data JPA"_** e **_Java: criando sua primeira API e conectando ao front"_** da _Alura_.
 
 ## 🚀 Tecnologias
 
-Esse projeto foi desenvolvido usando a [OMDb API](https://www.omdbapi.com) e as seguintes tecnologias: _Java 17_, _Spring Boot_, _Jackson Databidn_, _Maven_, _IntelliJ IDEA_.
+Esse projeto foi desenvolvido usando a [OMDb API](https://www.omdbapi.com) e as seguintes tecnologias: _Java 17_, _Spring Boot_, _Jackson Databidn_, _Maven_, _Visual Studio Code_, _Extensão Live Server_.
 
 ## 💻 Pré-requisitos:
 
-- IntelliJ IDEA ou outra IDE de sua escolha
+- IDE Visual Studio Code
 - Java 17
 - MySQL
+- Extensão _Live Server_
 
-## 📃 Funcionalidades
+## 📃 Funcionalidades (versão para command line):
 
 Com esta aplicação é possível:
+
 - Pesquisar séries e adicioná-las ao banco de dados da aplicação;
 - Pesquisar todas as séries já salvas no banco de dados da aplicação;
 - Pesquisar séries salvas usando um trecho do título;
@@ -30,12 +32,30 @@ Com esta aplicação é possível:
 - Verificar os cinco episódios mais bem avaliados de uma série salva;
 - Pesquisar episódios de uma série salva lançados a partir de certo ano.
 
-## 🛠️ Como usar
+## 📃 Funcionalidades (versão web):
+
+Na versão web é possível visualizar:
+
+- Últimas cinco séries que tiveram lançamentos recentes;
+- Séries populares;
+- Todas as séries;
+- Todas as temporadas de uma série e o título de seus episódios;
+- Os cinco episódios mais bem avaliados de uma série.
+
+## 🛠️ Como configurar a aplicação:
 
 1. Clone o repositório ou faça o download do arquivo zip.
 2. Descompacte o arquivo zip.
-3. Abra o projeto usando uma IDE.
+3. Abra o projeto usando o VS Code.
 4. Renomeie o arquivo `.envExample` para `.env` e configure as variáveis de acordo com as informações do seu banco de dados.
-5. Execute a aplicação através da classe `ScreenmatchApplication`.
-6. Interaja com a aplicação através do console.
 
+## 💻 Como usar (versão para command line):
+
+1. Execute a aplicação através da classe `ScreenmatchApplicationCommandLine`.
+2. Interaja com a aplicação atarvés do console.
+
+## 💻 Como usar (versão web):
+
+1. Execute o back-end da aplicação através da classe `ScreenmatchApplication`.
+2. Execute o front-end da aplicação clicando com o botão direito no arquivo `index.html` e escolhendo "Open with Live Server".
+3. Interaja com a aplicação através do navegador na guia que será aberta após o ínicio da execução com o Live Server.
