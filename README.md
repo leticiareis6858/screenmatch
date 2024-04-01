@@ -1,10 +1,12 @@
-# 🎬| screenmatch
+# 🎬| Screenmatch
 
 Essa é uma aplicação desenvolvida para facilitar a consulta de dados de séries.
 
 Aplicação feita nos cursos **_"Java: trabalhando com lambdas, streams e Spring Framework"_**, **_"Java: Persistência de dados e consultas com Spring Data JPA"_** e **_Java: criando sua primeira API e conectando ao front"_** da _Alura_.
 
-## 🚀 Tecnologias
+Front-end criado por [Monica Hilman](https://cursos.alura.com.br/user/monicahillman) disponível em: https://github.com/jacqueline-oliveira/3356-java-web-front
+
+## 🚀 Tecnologias:
 
 Esse projeto foi desenvolvido usando a [OMDb API](https://www.omdbapi.com) e as seguintes tecnologias: _Java 17_, _Spring Boot_, _Jackson Databidn_, _Maven_, _Visual Studio Code_, _Extensão Live Server_.
 
