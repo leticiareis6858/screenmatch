@@ -54,7 +54,7 @@ Na versão web é possível visualizar:
 ## 💻 Como usar (versão para command line):
 
 1. Execute a aplicação através da classe `ScreenmatchApplicationCommandLine`.
-2. Interaja com a aplicação atarvés do console.
+2. Interaja com a aplicação através do console.
 
 ## 💻 Como usar (versão web):
 
